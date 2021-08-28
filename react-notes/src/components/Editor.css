@@ -1,0 +1,34 @@
+#Editor {
+  flex-grow: 3;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+#Editor .metadata {
+  display: flex;
+}
+
+#Editor button {
+  flex-grow: 0;
+  margin-left: 10px;
+}
+
+#Editor input {
+  flex-grow: 1;
+  margin: 0 0 5px 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: solid black 1px;
+  border-radius: 0;
+}
+
+#Editor textarea {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: solid black 1px;
+  border-radius: 0;
+  flex-grow: 1;
+}

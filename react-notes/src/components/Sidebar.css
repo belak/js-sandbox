@@ -1,0 +1,18 @@
+#Sidebar {
+  flex-grow: 0;
+  padding: 20px;
+  max-width: 15em;
+  /*border-right: solid black 1px;*/
+}
+
+#Sidebar button {
+  width: 100%;
+}
+
+#Sidebar .notes-list {
+  width: 100%;
+}
+
+#Sidebar .notes-list .actions {
+  text-align: right;
+}
