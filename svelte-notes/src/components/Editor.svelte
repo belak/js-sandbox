@@ -11,10 +11,7 @@
 
 <div class="editor">
   <div class="metadata">
-    <input
-      value={$currentNote.title}
-      on:input={(event) => ($currentNote.title = event.currentTarget.value)}
-    />
+    <input bind:value={$currentNote.title} />
     <button
       on:click={() => {
         preview = !preview;
@@ -24,10 +21,7 @@
   {#if preview}
     <div>{@html renderedNote($currentNote.content)}</div>
   {:else}
-    <textarea
-      value={$currentNote.content}
-      on:input={(event) => ($currentNote.content = event.currentTarget.value)}
-    />
+    <textarea bind:value={$currentNote.content} />
   {/if}
 </div>
 

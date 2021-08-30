@@ -1,8 +1,5 @@
 <script lang="ts">
-  import type { Note } from "../store";
   import { notes, currentNote } from "../store";
-  const setCurrentNote = (note: Note) => {};
-  const removeNote = (note: Note) => {};
 </script>
 
 <div class="sidebar">

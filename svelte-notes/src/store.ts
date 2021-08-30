@@ -89,6 +89,7 @@ const createNoteStore = () => {
 
   return {
     subscribe,
+    update,
     addNote,
     removeNote,
     updateNote,
@@ -96,31 +97,21 @@ const createNoteStore = () => {
 };
 
 const createCurrentNoteStore = () => {
-  const currentNoteStore = writable<string | undefined>(undefined);
+  const { subscribe, set, update } = writable<Note>({ ...blankNote });
 
-  const { subscribe } = derived(
-    [currentNoteStore, rawNotes],
-    ([$currentNote, $rawNotes]) =>
-      $rawNotes.notes[$currentNote] ? $rawNotes.notes[$currentNote] : blankNote
-  );
-
-  const set = (note?: Note) => {
-    if (note) {
-      note = rawNotes.updateNote(note);
-    }
-    currentNoteStore.set(note?.id);
+  const wrappedSet = (rawNote: Note) => {
+    set(rawNotes.updateNote(rawNote));
   };
 
-  // NOTE: Writable technically needs an implementation of update, but we don't
-  // have a good way to implement it, so we just skip that because only set() is
-  // used in the current codebase.
-  const update = (cb: (note?: Note) => Note | undefined) => {};
+  const wrappedUpdate = (cb: (note: Note) => Note) => {
+    update((note: Note) => rawNotes.updateNote(cb(note)));
+  };
 
   return {
     subscribe,
-    set,
-    update,
-    reset: () => currentNoteStore.set(undefined),
+    set: wrappedSet,
+    update: wrappedUpdate,
+    reset: () => set({ ...blankNote }),
   };
 };
 
